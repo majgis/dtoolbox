@@ -1,10 +1,17 @@
 
 .header {
     padding: 5px;
-    background-color: lightsteelblue;
+    background-color: black;
+    color: white;
 }
 
 .header h3 {
     margin: 0;
     margin-top:3px;
 }
+
+.header .cell {
+    padding: 0;
+}
+
+
