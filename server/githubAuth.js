@@ -51,7 +51,7 @@ app
 
 
 						request({
-							url: body.access_token,
+							url: "https://api.github.com/user",
 							method: "GET",
 							json: true,
 							headers: {
