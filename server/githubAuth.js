@@ -7,6 +7,9 @@ var request = require('request');
 //TODO: Move to database before scaling
 var states = {};
 
+var User = require('./models/User');
+
+
 app
 		//Redirect to github
 		.get('/github', function (req, res) {
@@ -47,6 +50,12 @@ app
 					} else {
 						console.log('body', body);
 						res.append('Authentication', body.access_token);
+
+
+						User.find({ userId: 'majgis'}, function(err, users){
+							if (err) throw err;
+							console.log('user found:', users[0].userId);
+						});
 						res.redirect('/');
 					}
 				});
