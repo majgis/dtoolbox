@@ -55,7 +55,8 @@ app
 							method: "GET",
 							json: true,
 							headers: {
-								Authorization: 'token ' + body.access_token
+								Authorization: 'token ' + body.access_token,
+								"User-Agent": secrets.github.userAgent
 							}
 						}, function (error, response, body){
 
