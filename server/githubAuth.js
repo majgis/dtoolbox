@@ -23,6 +23,7 @@ app
 			var githubCode = req.query.code;
 			var state = states[req.query.state];
 			if (state){
+				delete states[req.query.state];
 				console.log('The state was recognized.');
 				res.status(200);
 			} else {
