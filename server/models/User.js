@@ -11,6 +11,12 @@ var UserSchema = new Schema({
 	avatar_url: {
 		type: String,
 		required: true
+	},
+	uid: {
+		type: String,
+		unique: true,
+		required: true,
+		dropDups: true
 	}
 
 });

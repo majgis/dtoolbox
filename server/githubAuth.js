@@ -33,6 +33,7 @@ app
 
 				var githubCode = req.query.code;
 
+				//Request the access token
 				request({
 					url: "https://github.com/login/oauth/access_token",
 					method: "POST",
@@ -49,7 +50,7 @@ app
 						res.redirect('/');
 					} else {
 
-
+						//Request user data
 						request({
 							url: "https://api.github.com/user",
 							method: "GET",
@@ -72,7 +73,8 @@ app
 									console.log('user found:', user.userId);
 								} else {
 									user = new User({
-										userId: userId
+										userId: userId,
+										uid: stateKey
 									});
 								}
 
@@ -80,6 +82,7 @@ app
 								user.save(function(err){
 									if (err) throw err;
 									console.log("User updated: ", userId);
+									res.cookie('token',  user.uid, {httpOnly: true, secure: true });
 									res.redirect('/');
 								});
 							});

@@ -5,6 +5,7 @@
   "author": "Michael Jackson <majgis@gmail.com>",
   "main": "./app.js",
   "dependencies": {
+    "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
     "mongoose": "^4.2.4",
     "node-uuid": "^1.4.3",
