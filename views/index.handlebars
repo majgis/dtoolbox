@@ -37,11 +37,15 @@
 
             {{#if isAuthenticated}}
                 <div class="pull-right">
-                    <img src="{{avatarUrl}}" alt="user name" height="32" width="32"/>
                     {{userId}}
+                    <img class="userAvatar"
+                         src="{{avatarUrl}}"
+                         alt="user name"
+                         height="32" width="32"/>
                 </div>
             {{else}}
-                <form action="login/github" method="get">
+                <form action="login/github"
+                      method="get">
                     <button type="submit"
                             class="btn btn-primary pull-right"
                             alt="GitHub Log In">
