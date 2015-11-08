@@ -63,14 +63,26 @@ app
 							if (error) throw error;
 
 							console.log(body);
-
-							User.find({ userId: 'majgis'}, function(err, users){
+							var userId = body.login;
+							User.find({ userId: userId}, function(err, users){
 								if (err) throw err;
-								console.log('user found:', users[0].userId);
+								var user;
+								if (users.length > 0){
+									user = users[0];
+									console.log('user found:', user.userId);
+								} else {
+									user = new User({
+										userId: userId
+									});
+								}
+
+								user.avatar_url = body.avatar_url;
+								user.save(function(err){
+									if (err) throw err;
+									console.log("User updated: ", userId);
+									res.redirect('/');
+								});
 							});
-
-							res.redirect('/');
-
 						});
 					}
 				});
