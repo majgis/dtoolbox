@@ -48,15 +48,29 @@ app
 						console.log("There was an issue getting the github access token:", error);
 						res.redirect('/');
 					} else {
-						console.log('body', body);
-						res.append('Authentication', body.access_token);
 
 
-						User.find({ userId: 'majgis'}, function(err, users){
-							if (err) throw err;
-							console.log('user found:', users[0].userId);
+						request({
+							url: body.access_token,
+							method: "GET",
+							json: true,
+							headers: {
+								Authorization: 'token ' + body.access_token
+							}
+						}, function (error, response, body){
+
+							if (error) throw error;
+
+							console.log(body);
+
+							User.find({ userId: 'majgis'}, function(err, users){
+								if (err) throw err;
+								console.log('user found:', users[0].userId);
+							});
+
+							res.redirect('/');
+
 						});
-						res.redirect('/');
 					}
 				});
 
