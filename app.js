@@ -1,13 +1,11 @@
 var express = require('express');
 var app = express();
+var githubAuth = require('./server/githubAuth');
 
-//Create a static file server
-app.configure(function() {
-  app.use(express.static(__dirname + '/public'));
-});
+app.use(express.static(__dirname + '/public'))
+    .use('/login', githubAuth);
 
-//Get the dummy data
-require('./server/ddata.js');
+
 
 var port = 8080;
 app.listen(port);

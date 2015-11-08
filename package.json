@@ -1,15 +1,15 @@
 {
   "name": "nko2015-entry",
   "version": "0.0.1",
-  "description": "Our soon to be awesome entry for NKO2015. Let's make something amazing.",
-  "author": "Node Knockout Team <all@nodeknockout.com>",
+  "description": "An online toolbox for software developers",
+  "author": "Michael Jackson <majgis@gmail.com>",
   "main": "./app.js",
   "dependencies": {
-    "express": "3.x.x"
+    "express": "^4.13.3",
+    "node-uuid": "^1.4.3"
   },
   "scripts": {
     "start": "node app.js",
     "postinstall": "node scripts/postinstall.js"
   }
-
 }
