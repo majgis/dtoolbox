@@ -25,10 +25,12 @@
 
     <link rel='stylesheet' type='text/css' href='/styles/main.css'>
 </head>
-<body>
+<body ng-app="dtk">
 
-<!-- Header -->
+
 <div class="container-fluid">
+
+    <!-- Header -->
     <div class="row header">
         <div class="col-xs-8 cell"><h3><i class="fa fa-wrench fa-4"></i>
             Developer
@@ -53,13 +55,47 @@
                     </button>
                 </form>
             {{/if}}
+        </div>
+    </div>
 
+    <div class="row content">
+        <div class="col-xs-3">
+            <div class="cell "  ng-controller="tocController as toc">
 
+                <div class="tocItem"
+                     ng-click="toc.selectedItem = tocItem"
+                     ng-class="{selected: toc.selectedItem.name == tocItem.name}"
+                     ng-repeat="tocItem in toc.tocItems">{[{ tocItem.name }]}</div>
+            </div>
+        </div>
 
+        <div class="col-xs-9">
+            <div class="cell">
 
-
+            </div>
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script>
+    angular.module('dtk', [])
+            .config(function($interpolateProvider){
+                $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+            })
+            .controller('tocController', function () {
+
+                this.tocItems = [
+                    {name: 'To Lowercase'},
+                    {name: 'To Uppercase'},
+                    {name: 'Regex Tester'},
+                    {name: 'Timestamp Converter'},
+                    {name: 'JSON Parser'}
+                ];
+
+                this.selectedItem = this.tocItems[0];
+            })
+</script>
+
 </body>
 </html>
